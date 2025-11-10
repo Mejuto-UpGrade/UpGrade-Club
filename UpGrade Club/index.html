@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UpGrade Club</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Librería liviana para animaciones de stroke y entrada -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+</head>
+<body>
+  <main id="app">
+    <div id="stage" aria-label="Escenario animado">
+      <!-- Fondo/partículas -->
+      <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+      <!-- Centro -->
+      <div id="center">
+        <!-- Cerebro SVG. Debes tener assets/brain.svg -->
+        <div id="brain-wrap" aria-hidden="true">
+          <object id="brainSVG" type="image/svg+xml" data="assets/brain.svg"></object>
+        </div>
+
+        <!-- Texto rotativo accesible -->
+        <div id="rotating-text" aria-live="polite"></div>
+
+        <!-- Botón principal (se muestra después de la animación) -->
+        <button id="enter-btn" class="primary hidden" aria-controls="video-modal">
+          Quiero entrar
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal de vídeo obligatorio -->
+    <div id="video-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="video-title">
+      <div class="modal-content">
+        <h2 id="video-title" class="sr-only">Vídeo de introducción</h2>
+        <video id="intro-video" playsinline>
+          <!-- Opción 1: archivo local -->
+          <source src="assets/video.mp4" type="video/mp4" />
+          <!-- Opción 2: Vimeo/YouTube (ver notas al final para incrustación) -->
+          Tu navegador no soporta vídeo.
+        </video>
+        <p class="muted" style="text-align:center; margin-top:8px;">
+          Debes ver el vídeo completo para continuar.
+        </p>
+      </div>
+    </div>
+
+    <!-- Resumen y opciones de entrada -->
+    <section id="summary" class="hidden" aria-labelledby="summary-title">
+      <div class="summary-inner">
+        <h2 id="summary-title">Lo que incluye el UpGrade Club</h2>
+        <ul id="features-list" aria-label="Características"></ul>
+
+        <div id="entry-options" class="hidden" aria-label="Opciones de entrada">
+          <div class="option">
+            <button id="pay-btn" class="cta">Pagar 10 € y entrar</button>
+            <p class="muted">Apoya el proyecto. Acceso inmediato.</p>
+          </div>
+          <div class="option">
+            <button id="audible-btn" class="cta">Entrar gratis registrándote en Audible</button>
+            <p class="muted">Es gratis si cancelas después del periodo de prueba.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
